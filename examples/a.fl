@@ -1,0 +1,50 @@
+define: require stack:from-q js:require null js:stacky ;
+
+define: fs [ "fs" ] require ;
+
+define: to-fn q:enclose js:as-fn ;
+
+[ "./examples/a.fl" "utf8" [ . ] to-fn ] stack:from-q .
+(
+[
+  "./examples/a.fl"
+  "utf8"
+  [ . ]
+  to-fn
+] stack:from-q fs js:get:readFile null js:stacky .
+)
+
+[ 1 2 [ "foo" ] ] stack:this .
+
+define: arr 1 2 js:Array js:call:2 ;
+
+arr .
+
+define: foo "foo" . ;
+
+define: bar "bar" . ;
+
+[ foo bar ] q:execute .
+
+[ bar ] [ foo ] q:append q:execute .
+
+[ foo bar baz ] q:split q:content . q:content . q:content .
+
+\"foo" q:by-name q:enclose q:execute .
+
+[ define: trololo "trololo" . ; ] q:execute . trololo
+
+"stack.push(stack.pop()+stack.pop())" "+" inline
+
+1 2 + .
+
+"foo \" bar" .
+
+[ 2 2 ] stack:from-q js:Math.pow null js:stacky .
+
+[ 2 2 ] stack:from-q .
+
+
+
+
+\ [ 3 4 ] js:Math.pow stacky .

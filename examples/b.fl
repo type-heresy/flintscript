@@ -1,0 +1,19 @@
+\ syntax: foo [ 1 2 ] q:execute ;
+
+\ foo .
+
+
+\ inline: + "stack.push(stack.pop() + stack.pop())"
+
+
+"stack.push(stack.pop() + stack.pop())" "+" inline
+
+"stack.push(typeof stack.pop());" "typeof" inline
+
+define: bracket "\"" + "\"" swap + ;
+
+syntax: inline: typeof . ; \ bracket q:quote swap q:quote q:append [ inline ] swap q:append ;
+
+inline: -  .   \ "stack.push(stack.pop() - stack.pop())" bracket .
+
+\ 1 2 3 2 stack:take q:from-stack .
