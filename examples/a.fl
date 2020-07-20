@@ -1,8 +1,8 @@
-define: require stack:from-q js:require null js:stacky ;
+define: require stack:from-q js::require null js:run ;
 
 define: fs [ "fs" ] require ;
 
-define: to-fn q:enclose js:as-fn ;
+define: to-fn q:enclose js:fn ;
 
 [ "./examples/a.fl" "utf8" [ . ] to-fn ] stack:from-q .
 (
@@ -11,12 +11,12 @@ define: to-fn q:enclose js:as-fn ;
   "utf8"
   [ . ]
   to-fn
-] stack:from-q fs js:get:readFile null js:stacky .
+] stack:from-q fs js:get:readFile null js:run .
 )
 
 [ 1 2 [ "foo" ] ] stack:this .
 
-define: arr 1 2 js:Array js:call:2 ;
+define: arr [ 1 2 ] stack:from-q js::Array null js:run ;
 
 arr .
 
@@ -40,7 +40,7 @@ define: bar "bar" . ;
 
 "foo \" bar" .
 
-[ 2 2 ] stack:from-q js:Math.pow null js:stacky .
+[ 2 2 ] stack:from-q js::Math.pow null js:run .
 
 [ 2 2 ] stack:from-q .
 

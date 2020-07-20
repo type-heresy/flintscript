@@ -1,19 +1,27 @@
-\ syntax: foo [ 1 2 ] q:execute ;
+\syntax: in: "inline" "\"-\"" "\"stack.push(stack.pop() - stack.pop())\"" ;
+\in:
+"
+var a = stack.pop();
+var b = stack.pop();
+stack.push(a + b);
+" "+" inline
 
-\ foo .
+define: escape "\"" + "\"" swap + ;
 
+"foo" escape .
 
-\ inline: + "stack.push(stack.pop() + stack.pop())"
+define: probe "probe" . stack:this stack:arr . "" . ;
 
+syntax: escaped escape ;
 
-"stack.push(stack.pop() + stack.pop())" "+" inline
+syntax: inline: escape swap "inline" rot ;
 
-"stack.push(typeof stack.pop());" "typeof" inline
+inline: - "stack.push(stack.pop() - stack.pop())"
 
-define: bracket "\"" + "\"" swap + ;
+1 2 - .
 
-syntax: inline: typeof . ; \ bracket q:quote swap q:quote q:append [ inline ] swap q:append ;
+[ "test-test" ] "test" voc:add
 
-inline: -  .   \ "stack.push(stack.pop() - stack.pop())" bracket .
+test .
 
-\ 1 2 3 2 stack:take q:from-stack .
+escaped foo .
