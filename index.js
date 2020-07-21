@@ -2,10 +2,10 @@ const fs = require("fs");
 
 const { uuid } = require("uuidv4");
 
-const tokenize = require("./tokenizer");
-const Quote = require("./quote");
-const { Stack, DirectStack, ReversedStack } = require("./stack");
-const prelude = require("./prelude");
+const tokenize = require("./lib/tokenizer");
+const Quote = require("./lib/quote");
+const { Stack, DirectStack, ReversedStack } = require("./lib/stack");
+const prelude = require("./lib/prelude");
 
 Quote.prototype.execute = function(stack, vocabular) {
   processWords(stack, this.vocabular || vocabular, this.content);

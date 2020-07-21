@@ -1,0 +1,17 @@
+"stack.pop();" "." inline .
+
+"console.log(stack.pop());" "log" inline .
+
+"var o = stack.pop(); stack.push(o); stack.push(o);" "dup" inline .
+
+"stack.push(stack.pop() + stack.pop());" "+" inline .
+
+"stack.push(stack);" "this" inline .
+
+"stack.pop().run(stack, words, voc);" "interpret" inline .
+
+"voc[stack.pop()] = stack.pop();" "alias" inline .
+
+"stack.pop().run(words, [], voc);" "inline-syntax" inline .
+
+[ 1 ] "foo" alias

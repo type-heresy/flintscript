@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "javascript-state-machine": "^3.1.0",
+    "parjs": "^0.12.7",
     "uuidv4": "^6.2.0"
   }
 }
