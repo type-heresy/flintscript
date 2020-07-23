@@ -1,13 +1,9 @@
 module.exports = function(s, w, v) {
-  console.log("LOADED", v);
+  var v0 = v.set("insert142", function(s, w, v) {
+    return [s, w.cons("to-load-words mark"), v];
+  });
 
-  v["insert142"] = function(s, w, v) {
-    w.unshift(142);
-  };
+  var [s1, w1, v1] = v0.get(":file")(s, w, v0);
 
-  return [ s, w.cons(132), v ];
-
-  var [s0, w0, v0] = v["__file"](s, w, v);
-
-  return [ s0.cons(184).cons(934), w0.cons(132), v0 ];
+  return [ s1.cons(184).cons(934), w1.cons(132), v1 ];
 };

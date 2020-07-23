@@ -13,20 +13,18 @@ const runFile = function(filename, s, v) {
 
 const main = function(args) {
   var i;
-  var v;
-  var s = List.empty;
   var filename;
   var res;
   for (i = 0; i < args.length; i++) {
     if (args[i] == "--file") {
       filename = path.resolve(args[i + 1]);
-      v = voc(filename);
-      res = runFile(filename, s, v);
+      res = runFile(filename, List.empty, voc(filename));
     }
   }
+
   console.log(`result stack: ${res[0]}\n`);
   console.log(`word stack: ${res[1]}\n`);
-  console.log("vocabular: ", res[2], "\n");
+  console.log("vocabular: ", Array.from(res[2].keys()), "\n");
 };
 
 main(process.argv);
