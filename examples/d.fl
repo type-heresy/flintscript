@@ -32,6 +32,13 @@ stest test
 
 insert142 bar baz
 
-"./to-import.fl" :import
+"./to-import.fl" :import \ foo
 
 :file
+
+
+"foo" bar
+
+:define
+
+12.123 dd 12.11

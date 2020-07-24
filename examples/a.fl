@@ -30,7 +30,7 @@ define: bar "bar" . ;
 
 [ foo bar baz ] q:split q:content . q:content . q:content .
 
-\"foo" q:by-name q:enclose q:execute .
+\ "foo" q:by-name q:enclose q:execute .
 
 [ define: trololo "trololo" . ; ] q:execute . trololo
 
