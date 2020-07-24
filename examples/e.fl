@@ -1,4 +1,4 @@
-:define foo 1 :define bar 12 ; 2 ;
+\ :define foo 1 :define bar 12 ; 2 ;
 
 :namespace zoo
   :define foo 12 ;
@@ -11,4 +11,23 @@
   ;
 ;
 
-foo
+\ foo zoo:doo:bar
+
+:require zoo:doo T:A
+
+T:A:bar
+
+:namespace hm
+  :require T:A erm
+
+  voc:focus
+
+
+   :compile xxxx erm:bar;
+;
+
+:use zoo:doo
+
+hm:xxxx
+
+bar
