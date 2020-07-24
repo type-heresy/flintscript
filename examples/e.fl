@@ -1,13 +1,10 @@
-\ :define foo 1 :define bar 12 ; 2 ;
+:define foo 1 :define bar 12 ; 2 ;
 
 :namespace zoo
   :define foo 12 ;
 
-  voc:focus
-
   :namespace doo
     :define bar 18 ;
-    voc:focus
   ;
 ;
 
@@ -15,19 +12,14 @@
 
 :require zoo:doo T:A
 
-T:A:bar
-
 :namespace hm
   :require T:A erm
 
-  voc:focus
+  :compile xxxx erm:bar ;
 
-
-   :compile xxxx erm:bar;
+  :define xxx erm:bar ;
 ;
 
-:use zoo:doo
+hm:xxxx 1 1 1
 
-hm:xxxx
-
-bar
+[ 1 2 ] list:unquote
