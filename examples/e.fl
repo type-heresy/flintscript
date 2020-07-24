@@ -1,3 +1,14 @@
-:define trip dup dup ;
+:define foo 1 :define bar 12 ; 2 ;
 
-1 dup 2 trip
+:namespace zoo
+  :define foo 12 ;
+
+  voc:focus
+
+  :namespace doo
+    :define bar 18 ;
+    voc:focus
+  ;
+;
+
+foo
