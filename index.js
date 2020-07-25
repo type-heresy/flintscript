@@ -22,9 +22,10 @@ const main = function(args) {
     }
   }
 
-  console.log(`result stack: ${res[0]}\n`);
-  console.log(`word stack: ${res[1]}\n`);
-  console.log("vocabular: ", Array.from(res[2].keys()), "\n");
+//  console.log(`result stack: ${res[0]}\n`);
+//  console.log(`result stack inspect: `, res[0]);
+//  console.log(`word stack: ${res[1]}\n`);
+//  console.log("vocabular: ", Array.from(res[2].keys()), "\n");
 };
 
 main(process.argv);

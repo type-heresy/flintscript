@@ -20,6 +20,10 @@
   :define xxx erm:bar ;
 ;
 
+hm voc:keys
+
 hm:xxxx 1 1 1
 
-[ 1 2 ] list:unquote
+
+
+\ hm voc:keys

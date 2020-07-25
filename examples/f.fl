@@ -1,0 +1,72 @@
+:define log list:quote js::console swap js:!:log . ;
+
+:define now [ ] js::Date js:new [ ] js:!:getTime ;
+
+:compile flat-map list:map list:flatten ;
+:compile flat-map! list:map list:flat-compile ;
+
+:namespace op
+  :define <= dup rot swap dup rot < rot = or ;
+  :define >= dup rot swap dup rot > rot = or ;
+;
+
+:use op
+
+">= =<" log
+2 3 >= log
+2 3 <= log
+"======" log
+
+:define sqrt list:quote js::Math swap js:!:sqrt ;
+
+\ ax^2 + bx + c = 0
+\ (a b c -- )
+\ b^2 - 4ac
+:define D
+  swap
+  \ (b a c)
+  dup *
+  \ (b^2 a c)
+  rot
+  4 * *
+  \ (4ac b^2)
+  swap -
+;
+
+"list:take" log
+1 2 3 4 2 list:take log
+"======" log
+
+"D" log
+2 5 2 D log
+"======" log
+
+:define solve
+  ( a b c -- )
+  3 list:take
+  ( [ a b c ] -- )
+  dup
+  ( [ a b c ] [ a b c ] -- )
+  list:unquote
+  D
+  ( D [ a b c ] )
+  swap list:uncons!
+  ( a [ b c ] d )
+  swap list:uncons!
+  ( b [ c ] a d )
+  swap .
+  rot rot
+  sqrt -
+  swap 2 *
+  /
+;
+
+
+"solve" log
+2 5 2 solve log
+"======" log
+
+
+"list:this" log
+list:this log
+"======" log
