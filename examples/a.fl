@@ -45,6 +45,9 @@ define: bar "bar" . ;
 [ 2 2 ] stack:from-q .
 
 
-
+( "foo" )
 
 \ [ 3 4 ] js:Math.pow stacky .
+
+
+\ "foo"
