@@ -5,6 +5,7 @@ target/
 ./**/target/*.class
 *.class
 .targets/
+project/target/
 
 /it/testing.conf
 tmp
