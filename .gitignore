@@ -6,6 +6,7 @@ target/
 *.class
 .targets/
 project/target/
+core/target/
 
 /it/testing.conf
 tmp
