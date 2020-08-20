@@ -168,7 +168,6 @@ export class Tokenizer {
 export default function(str: string): List<Node<string>> {
   let lines = (str + " ").split("\n");
   let tokenizer = new Tokenizer();
-
   for (let i = 0; i < lines.length; i++) {
     let chars = [...lines[i]];
     for (let j = 0; j < chars.length; j++) {
