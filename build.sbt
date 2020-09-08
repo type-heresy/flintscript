@@ -7,6 +7,7 @@ lazy val core = (project in file("core"))
     addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.11.0" cross CrossVersion.full),
     mainClass := Some("ru.flint.Main"),
     libraryDependencies ++= Seq(
+      "org.parboiled" %% "parboiled" % "2.2.0",
       "org.typelevel" %% "cats-core" % "2.2.0-RC2",
       "org.typelevel" %% "cats-effect" % "2.2.0-RC3",
       "co.fs2" %% "fs2-core" % "2.4.0",
