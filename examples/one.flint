@@ -1,6 +1,6 @@
 book: one
 
-link: two
+link: two [ foo bar ]
 
 reference: three :four
 

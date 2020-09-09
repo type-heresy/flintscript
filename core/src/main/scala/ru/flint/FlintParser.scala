@@ -114,7 +114,7 @@ class FlintParser(val input: ParserInput) extends Parser with StringBuilding {
   def ClosingTemplate =
     rule(">}")
 
-  def NLs = rule(oneOrMore(NL))
+  def NLs = rule(NL ~ WS)
 }
 
 object FlintParser {

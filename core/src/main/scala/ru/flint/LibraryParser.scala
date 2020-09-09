@@ -32,14 +32,25 @@ class LibraryParser(input: ParserInput) extends FlintParser(input) {
   def UseP: Rule1[Use] =
     rule(LinkP | ReferenceP)
   def LinkP: Rule1[Link] =
-    rule("link:" ~ WS1 ~ Applied ~ NLs ~> ((x: String) => Link(x)))
+    rule("link:" ~ WS1 ~ Applied ~ WS1 ~ Names ~ NLs ~> ((x: String, y: List[String]) => Link(x, y)))
+  def Names: Rule1[List[String]] =
+    rule('[' ~ WS1 ~ oneOrMore(Name) ~ ']' ~> ((x: Seq[String]) => List(x:_*)))
+  def Name: Rule1[String] =
+    rule(!Closing ~ Applied ~ WS1)
+
   def ReferenceP: Rule1[Reference] =
     rule("reference:" ~ WS1 ~ Applied ~ WS1 ~ Quote ~ NLs ~> ((a: String, b: String) => Reference(a, b)))
 
   def EntriesP: Rule1[Map[String, Script]] =
     rule(oneOrMore(EntryP).separatedBy(WS1) ~> ((x: Seq[(String, Script)]) => Map(x:_*)))
   def EntryP: Rule1[(String, Script)] =
-    rule(Quote ~ WS1 ~ ScriptP ~> ((r: String, s: Script) => (r, s)))
+    rule(EntryNameP ~ WS1 ~ ScriptP ~> ((r: String, s: Script) => (r, s)))
+  def EntryNameP: Rule1[String] =
+    rule(':' ~ clearSB() ~ EntryName ~ push(sb.toString))
+  def EntryName: Rule0 =
+    rule(oneOrMore(EntryNameC))
+  def EntryNameC: Rule0 =
+    rule(!WS1 ~ !'/' ~ ANY ~ appendSB())
 
   def ShelfP: Rule1[Shelf] =
     rule(BookHeaderP ~ UsesP ~ EntriesP ~> ((x: String, y: List[Use], z: Map[String, Script]) =>

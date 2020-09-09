@@ -16,6 +16,8 @@ sealed trait Error extends Product with Serializable
 
 sealed trait Syntax extends Product with Serializable
 
+sealed trait Note extends Product with Serializable
+
 object Syntax {
   // foo, 1, 12, "bar"
   trait Rune extends Syntax
@@ -37,9 +39,11 @@ object Syntax {
     final case object Nil extends Rune
   }
 
+  // TODO: Do we need this at all?
+  final case object Foreign extends Syntax with Note
 
   // [ foo 1 12 "bar" ]
-  final case class Script(runes: List[Syntax]) extends Syntax
+  final case class Script(runes: List[Syntax]) extends Syntax with Note
   // [< foo 1 12 "bar" >]
   final case class Spell(runes: List[Syntax]) extends Syntax
   // { foo: [ 1 ], bar: [ 12 "bar" ] }
@@ -66,20 +70,8 @@ object Syntax {
     final case class Multiline(value: String) extends Comment
     final case class Singleline(value: String) extends Comment
   }
-}
 
-sealed trait Use extends Product with Serializable
 
-object Use {
-  final case class Link(value: String) extends Use
-  final case class Reference(key: String, value: String) extends Use
-}
-
-trait LibEntry extends Product with Serializable
-
-object LibEntry {
-  final case class Shelf(name: String, scripts: Map[String, Syntax.Script], uses: List[Use]) extends LibEntry
-  final case class Lectern(name: String, scripts: Map[String, Syntax.Script], uses: List[Use]) extends LibEntry
 }
 
 
